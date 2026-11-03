@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pooja · Software Developer</title>
+    <meta
+      name="description"
+      content="Pooja is a software developer who builds back-end services with Node.js and interactive apps for the browser."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --black: #000000;
+        --navy: #0f295c;
+        --slate: #546a7b;
+        --mist: #9ea3b0;
+        --burgundy: #7a0018;
+        --white: #ffffff;
+        --sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+        --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        --gutter: clamp(1.5rem, 6vw, 6rem);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--black);
+        color: var(--white);
+        font-family: var(--sans);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        padding-bottom: 7rem; /* room for the floating nav */
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .wrap {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding-left: var(--gutter);
+        padding-right: var(--gutter);
+      }
+
+      .label {
+        font-family: var(--mono);
+        font-size: 0.8rem;
+        letter-spacing: 0.04em;
+        color: var(--mist);
+      }
+
+      /* Top bar */
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1.75rem;
+        padding-bottom: 1.75rem;
+      }
+      .wordmark {
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        text-decoration: none;
+      }
+      .wordmark span {
+        color: var(--burgundy);
+      }
+      .status {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .status::before {
+        content: "";
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        background: var(--mist);
+      }
+
+      /* Hero */
+      .hero {
+        padding-top: clamp(5rem, 14vw, 12rem);
+        padding-bottom: clamp(4rem, 10vw, 8rem);
+      }
+      .hero h1 {
+        margin: 0;
+        max-width: 18ch;
+        font-size: clamp(2.5rem, 6.5vw, 5.75rem);
+        font-weight: 500;
+        line-height: 1.02;
+        letter-spacing: -0.045em;
+        text-wrap: balance;
+      }
+      .hero h1 em {
+        font-style: normal;
+        color: var(--mist);
+      }
+      .hero .label {
+        margin-top: 2.5rem;
+      }
+
+      /* Scrolling tech strip */
+      .strip {
+        overflow: hidden;
+        border-top: 1px solid var(--slate);
+        border-bottom: 1px solid var(--slate);
+        padding: 1.25rem 0;
+      }
+      .strip-track {
+        display: flex;
+        width: max-content;
+        animation: scroll 40s linear infinite;
+      }
+      .strip ul {
+        display: flex;
+        align-items: center;
+        gap: 2.5rem;
+        margin: 0;
+        padding: 0 1.25rem;
+        list-style: none;
+        font-family: var(--mono);
+        font-size: 1rem;
+        color: var(--mist);
+        white-space: nowrap;
+      }
+      .strip li::after {
+        content: "";
+        display: inline-block;
+        width: 0.45rem;
+        height: 0.45rem;
+        margin-left: 2.5rem;
+        border-radius: 50%;
+        background: var(--burgundy);
+        vertical-align: middle;
+      }
+      @keyframes scroll {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* Sections */
+      section {
+        padding-top: clamp(5rem, 10vw, 8rem);
+      }
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+      h2 {
+        margin: 0;
+        font-size: clamp(2.25rem, 5vw, 4rem);
+        font-weight: 500;
+        letter-spacing: -0.045em;
+        line-height: 1;
+      }
+
+      /* Work list */
+      .work {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border-top: 1px solid var(--slate);
+      }
+      .work li {
+        border-bottom: 1px solid var(--slate);
+      }
+      .work a {
+        display: grid;
+        grid-template-columns: 3.5rem 1fr auto;
+        gap: 1.5rem;
+        align-items: start;
+        padding: 2rem 1rem;
+        text-decoration: none;
+        transition: background-color 0.25s ease;
+      }
+      .work a:hover,
+      .work a:focus-visible {
+        background: var(--navy);
+        outline: none;
+      }
+      .work .num {
+        padding-top: 0.6rem;
+      }
+      .work h3 {
+        margin: 0 0 0.5rem;
+        font-size: clamp(1.5rem, 3vw, 2.25rem);
+        font-weight: 500;
+        letter-spacing: -0.035em;
+        line-height: 1.1;
+      }
+      .work p {
+        margin: 0 0 0.75rem;
+        max-width: 60ch;
+        font-size: 1.05rem;
+        color: var(--mist);
+      }
+      .arrow {
+        width: 2.75rem;
+        height: 2.75rem;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--slate);
+        border-radius: 50%;
+        font-size: 1.1rem;
+        transition:
+          transform 0.25s ease,
+          background-color 0.25s ease,
+          border-color 0.25s ease;
+      }
+      .live {
+        display: inline-block;
+        margin-left: 0.6rem;
+        padding: 0.2rem 0.65rem;
+        border-radius: 999px;
+        background: var(--burgundy);
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        letter-spacing: 0.04em;
+        vertical-align: middle;
+      }
+      .work a:hover .arrow,
+      .work a:focus-visible .arrow {
+        transform: rotate(45deg);
+        background: var(--burgundy);
+        border-color: var(--burgundy);
+      }
+
+      /* What I do */
+      .services {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1px;
+        background: var(--slate);
+        border: 1px solid var(--slate);
+      }
+      .service {
+        background: var(--black);
+        padding: 2rem 1.75rem 2.5rem;
+      }
+      .service h3 {
+        margin: 3rem 0 0.5rem;
+        font-size: 1.5rem;
+        font-weight: 500;
+        letter-spacing: -0.03em;
+      }
+      .service p {
+        margin: 0;
+        color: var(--mist);
+      }
+
+      /* Contact */
+      .contact {
+        padding-bottom: clamp(4rem, 8vw, 6rem);
+      }
+      .contact h2 {
+        font-size: clamp(2.75rem, 8vw, 7rem);
+        max-width: 12ch;
+      }
+      .email {
+        display: inline-block;
+        margin-top: 2.5rem;
+        font-size: clamp(1.25rem, 3vw, 2rem);
+        letter-spacing: -0.02em;
+        text-decoration: none;
+        background: linear-gradient(var(--burgundy), var(--burgundy)) 0 100% /
+          0 3px no-repeat;
+        transition: background-size 0.35s ease;
+        padding-bottom: 0.25rem;
+      }
+      .email:hover,
+      .email:focus-visible {
+        background-size: 100% 3px;
+      }
+      .profiles {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+      .profiles a {
+        text-underline-offset: 0.25em;
+        text-decoration-color: var(--slate);
+      }
+      .profiles a:hover {
+        text-decoration-color: var(--white);
+      }
+
+      footer {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--slate);
+      }
+
+      /* Floating nav */
+      .dock {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 1.5rem;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        pointer-events: none;
+      }
+      .dock nav {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.35rem;
+        background: var(--navy);
+        border: 1px solid var(--slate);
+        border-radius: 999px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        pointer-events: auto;
+      }
+      .dock a {
+        padding: 0.65rem 1.1rem;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        text-decoration: none;
+        color: var(--mist);
+        transition:
+          color 0.2s ease,
+          background-color 0.2s ease;
+      }
+      .dock a:hover {
+        color: var(--white);
+      }
+      .dock .cta {
+        background: var(--burgundy);
+        color: var(--white);
+        font-weight: 500;
+      }
+      .dock .cta:hover {
+        background: #95001d;
+      }
+
+      /* Fade in on scroll */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      @media (max-width: 640px) {
+        .work a {
+          grid-template-columns: 1fr auto;
+          padding: 1.75rem 0.5rem;
+        }
+        .work .num {
+          display: none;
+        }
+        .status {
+          display: none;
+        }
+        .dock a {
+          padding: 0.6rem 0.8rem;
+          font-size: 0.9rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .strip-track {
+          animation: none;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="wrap topbar">
+      <a class="wordmark" href="#top" id="top">pooja<span>.</span></a>
+      <span class="label status">Software Developer</span>
+    </header>
+
+    <main>
+      <div class="wrap hero">
+        <h1 class="reveal">
+          I build back-end services with Node.js
+          <em>and interactive apps for the browser.</em>
+        </h1>
+        <p class="label reveal">Pooja — Software Developer</p>
+      </div>
+
+      <div class="strip" aria-label="Technologies I use">
+        <div class="strip-track">
+          <ul>
+            <li>JavaScript</li>
+            <li>Node.js</li>
+            <li>Express</li>
+            <li>SQLite</li>
+            <li>MongoDB</li>
+            <li>Mongoose</li>
+            <li>REST APIs</li>
+            <li>JWT</li>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>Bootstrap</li>
+            <li>Handlebars</li>
+            <li>Git</li>
+          </ul>
+          <ul aria-hidden="true">
+            <li>JavaScript</li>
+            <li>Node.js</li>
+            <li>Express</li>
+            <li>SQLite</li>
+            <li>MongoDB</li>
+            <li>Mongoose</li>
+            <li>REST APIs</li>
+            <li>JWT</li>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>Bootstrap</li>
+            <li>Handlebars</li>
+            <li>Git</li>
+          </ul>
+        </div>
+      </div>
+
+      <section id="work" class="wrap">
+        <div class="section-head reveal">
+          <h2>Selected work</h2>
+          <span class="label">(02)</span>
+        </div>
+        <ul class="work">
+          <li class="reveal">
+            <a href="https://github.com/Pooja9810/-order-management-system-assignment">
+              <span class="label num">01</span>
+              <div>
+                <h3>Order Management System</h3>
+                <p>
+                  Four HTTP services that place, track and settle trades against
+                  a simulated exchange. Every handler gives the right result even
+                  when messages arrive twice or out of order. Cash and shares are
+                  reserved when an order is placed and settled on each fill.
+                </p>
+                <span class="label">Node.js · Express 5 · SQLite</span>
+              </div>
+              <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li class="reveal">
+            <a href="https://pooja9810.github.io/race-to-home/race-to-home.html" target="_blank" rel="noopener">
+              <span class="label num">02</span>
+              <div>
+                <h3>Race to Home <span class="live">Play it live</span></h3>
+                <p>
+                  A doodle-style board game for 2–4 players, based on the Indian
+                  race game Chowka Bhara / Ashta Chamma, with a demo mode where
+                  four computer players race each other.
+                </p>
+                <span class="label">JavaScript modules · HTML · CSS</span>
+              </div>
+              <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section id="skills" class="wrap">
+        <div class="section-head reveal">
+          <h2>What I do</h2>
+        </div>
+        <div class="services reveal">
+          <div class="service">
+            <span class="label">(01)</span>
+            <h3>Back-end services</h3>
+            <p>REST APIs in Express, services that talk over HTTP, and token-based auth.</p>
+          </div>
+          <div class="service">
+            <span class="label">(02)</span>
+            <h3>Data &amp; databases</h3>
+            <p>SQLite and MongoDB schemas, transactions, and money kept in whole cents.</p>
+          </div>
+          <div class="service">
+            <span class="label">(03)</span>
+            <h3>Browser apps</h3>
+            <p>Interactive pages in plain JavaScript, HTML and CSS, from dashboards to games.</p>
+          </div>
+          <div class="service">
+            <span class="label">(04)</span>
+            <h3>Reliable logic</h3>
+            <p>Event replays and message handlers that survive duplicates, checked with acceptance tests.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="wrap contact">
+        <p class="label reveal">Get in touch</p>
+        <h2 class="reveal">Let's build something together.</h2>
+        <a class="email reveal" href="mailto:pooja.patel9193@gmail.com">pooja.patel9193@gmail.com</a>
+        <div class="profiles label reveal">
+          <a href="https://github.com/Pooja9810">GitHub</a>
+          <a href="https://www.linkedin.com/in/pooja-j-patel/">LinkedIn</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap label">
+      <span>© 2026 Pooja</span>
+      <a href="#top">Back to top ↑</a>
+    </footer>
+
+    <div class="dock">
+      <nav aria-label="Main">
+        <a href="#work">Work</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <a class="cta" href="mailto:pooja.patel9193@gmail.com">Email me</a>
+      </nav>
+    </div>
+
+    <script>
+      const items = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          }
+        },
+        { threshold: 0.15 },
+      );
+      items.forEach((item) => observer.observe(item));
+    </script>
+  </body>
+</html>
