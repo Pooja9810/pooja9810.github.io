@@ -1,568 +1,339 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Pooja · Software Developer</title>
-    <meta
-      name="description"
-      content="Pooja is a software developer who builds back-end services with Node.js and interactive apps for the browser."
-    />
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32" />
-    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        --black: #000000;
-        --navy: #0f295c;
-        --slate: #546a7b;
-        --mist: #9ea3b0;
-        --burgundy: #7a0018;
-        --white: #ffffff;
-        --sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Helvetica, Arial, sans-serif;
-        --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-        --gutter: clamp(1.5rem, 6vw, 6rem);
-      }
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pooja Patel · Software Developer</title>
+<meta name="description" content="Pooja Patel is a software developer specializing in Node.js back-end systems: APIs and data layers that stay correct under real-world conditions.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,800&display=swap">
+<style>
+  /* Layout: asymmetric 12-col grid. A thin vertical rule splits a narrow left rail
+     (oversized section numbers) from the content column. Those two are the only flourishes. */
+  :root {
+    --paper: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #0e1628;
+    --ink-soft: #536079;
+    --rule: #d8dde8;
+    --accent: #1d5fc2;
+    --display: "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --body: "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --rail: clamp(0px, 18vw, 220px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0b1020; --surface: #111832; --ink: #e8ecf5; --ink-soft: #97a3bd; --rule: #25304d; --accent: #7aa7ff;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0b1020; --surface: #111832; --ink: #e8ecf5; --ink-soft: #97a3bd; --rule: #25304d; --accent: #7aa7ff;
+    color-scheme: dark;
+  }
 
-      * {
-        box-sizing: border-box;
-      }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration-color: var(--rule); text-underline-offset: 0.22em; text-decoration-thickness: 1px; transition: color .2s, text-decoration-color .2s; }
+  a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 
-      html {
-        scroll-behavior: smooth;
-      }
+  .label { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
 
-      body {
-        margin: 0;
-        background: var(--black);
-        color: var(--white);
-        font-family: var(--sans);
-        line-height: 1.5;
-        -webkit-font-smoothing: antialiased;
-        padding-bottom: 7rem; /* room for the floating nav */
-      }
+  .page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  @media (min-width: 720px) {
+    .page { padding-left: max(40px, env(safe-area-inset-left, 0px)); padding-right: max(40px, env(safe-area-inset-right, 0px)); }
+  }
 
-      a {
-        color: inherit;
-      }
+  /* Rail + content grid, shared by every section */
+  .row { display: grid; grid-template-columns: var(--rail) 1fr; }
+  .rail { border-right: 1px solid var(--rule); padding-right: 1.5rem; }
+  .main { padding-left: clamp(1.25rem, 4vw, 4rem); min-width: 0; }
+  .num {
+    display: block; font-family: var(--display); font-weight: 800; letter-spacing: -0.06em; line-height: 0.8;
+    font-size: clamp(4rem, 11vw, 9.5rem); color: var(--rule); position: sticky; top: calc(env(safe-area-inset-top, 0px) + 1.5rem);
+    font-variant-numeric: tabular-nums;
+  }
 
-      .wrap {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding-left: var(--gutter);
-        padding-right: var(--gutter);
-      }
+  /* Top bar */
+  .bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-block: 1.5rem; }
+  .bar nav { display: flex; gap: 1.5rem; }
+  .bar nav a { text-decoration: none; }
+  .theme {
+    font: inherit; font-family: var(--mono); font-size: 0.75rem; letter-spacing: .08em; text-transform: uppercase;
+    background: none; color: var(--ink-soft); border: 1px solid var(--rule); border-radius: 999px; padding: .35rem .75rem; cursor: pointer;
+  }
+  .theme:hover { color: var(--ink); border-color: var(--ink-soft); }
 
-      .label {
-        font-family: var(--mono);
-        font-size: 0.8rem;
-        letter-spacing: 0.04em;
-        color: var(--mist);
-      }
+  /* Header */
+  header.row { padding-block: clamp(3.5rem, 10vw, 7.5rem) clamp(3rem, 7vw, 5rem); }
+  header .main { display: grid; gap: 2rem; }
+  h1 { margin: 0; font-family: var(--display); font-weight: 800; letter-spacing: -0.045em; line-height: 0.95; font-size: clamp(2.75rem, 7vw, 5.5rem); }
+  .position { margin: 0; max-width: 30ch; font-size: clamp(1.35rem, 2.6vw, 2rem); line-height: 1.25; letter-spacing: -0.02em; text-wrap: balance; color: var(--ink-soft); }
+  .position strong { color: var(--ink); font-weight: 600; }
+  .links { display: flex; flex-wrap: wrap; gap: .75rem 1.75rem; align-items: center; margin: 0; padding: 0; list-style: none; font-weight: 500; }
+  .links a { text-decoration-color: var(--ink-soft); }
+  .copy {
+    font: inherit; font-family: var(--mono); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase;
+    margin-left: .5rem; padding: .15rem .5rem; border: 1px solid var(--rule); border-radius: 999px; background: none; color: var(--ink-soft); cursor: pointer;
+  }
+  .copy:hover { color: var(--accent); border-color: var(--accent); }
 
-      /* Top bar */
-      .topbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 1.75rem;
-        padding-bottom: 1.75rem;
-      }
-      .wordmark {
-        font-size: 1.5rem;
-        font-weight: 600;
-        letter-spacing: -0.03em;
-        text-decoration: none;
-      }
-      .wordmark span {
-        color: var(--burgundy);
-      }
-      .status {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-      .status::before {
-        content: "";
-        width: 0.5rem;
-        height: 0.5rem;
-        border-radius: 50%;
-        background: var(--mist);
-      }
+  /* Sections */
+  section.row { border-top: 1px solid var(--rule); padding-block: clamp(3.5rem, 8vw, 6rem); }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: clamp(2rem, 4vw, 3rem); }
+  h2 { margin: 0; font-family: var(--display); font-weight: 800; letter-spacing: -0.04em; line-height: 1; font-size: clamp(2rem, 4.5vw, 3.25rem); text-wrap: balance; }
 
-      /* Hero */
-      .hero {
-        padding-top: clamp(5rem, 14vw, 12rem);
-        padding-bottom: clamp(4rem, 10vw, 8rem);
-      }
-      .hero h1 {
-        margin: 0;
-        max-width: 18ch;
-        font-size: clamp(2.5rem, 6.5vw, 5.75rem);
-        font-weight: 500;
-        line-height: 1.02;
-        letter-spacing: -0.045em;
-        text-wrap: balance;
-      }
-      .hero h1 em {
-        font-style: normal;
-        color: var(--mist);
-      }
-      .hero .label {
-        margin-top: 2.5rem;
-      }
+  /* Projects */
+  .projects { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+  .card {
+    display: flex; flex-direction: column; gap: 1.25rem; min-width: 0;
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 6px;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    transition: transform .25s ease, border-color .25s ease;
+  }
+  .card:hover, .card:focus-within { transform: translateY(-3px); border-color: var(--accent); }
+  .card.feature { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1.5rem clamp(1.5rem, 4vw, 3.5rem); }
+  .card.feature .intro { display: flex; flex-direction: column; gap: 1.25rem; }
+  .card h3 { margin: 0; font-family: var(--display); font-weight: 800; letter-spacing: -0.035em; line-height: 1.05; font-size: clamp(1.6rem, 3vw, 2.3rem); }
+  .card.feature h3 { font-size: clamp(2rem, 4vw, 3rem); }
+  .problem { margin: 0; font-size: 1.1rem; line-height: 1.45; text-wrap: pretty; }
+  .facts { margin: 0; display: grid; gap: 1rem; }
+  .facts div { display: grid; grid-template-columns: 6.5rem 1fr; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+  .facts dt { padding-top: .2rem; }
+  .facts dd { margin: 0; color: var(--ink-soft); font-size: .98rem; min-width: 0; }
+  .facts dd strong { color: var(--ink); font-weight: 600; }
+  .stack { font-family: var(--mono); font-size: .8rem; color: var(--ink-soft); margin: 0; }
+  .actions { margin-top: auto; display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; align-items: center; font-weight: 600; }
+  .actions a { text-decoration-color: var(--accent); }
+  .actions .muted { font-weight: 400; color: var(--ink-soft); font-size: .9rem; }
 
-      /* Scrolling tech strip */
-      .strip {
-        overflow: hidden;
-        border-top: 1px solid var(--slate);
-        border-bottom: 1px solid var(--slate);
-        padding: 1.25rem 0;
-      }
-      .strip-track {
-        display: flex;
-        width: max-content;
-        animation: scroll 40s linear infinite;
-      }
-      .strip ul {
-        display: flex;
-        align-items: center;
-        gap: 2.5rem;
-        margin: 0;
-        padding: 0 1.25rem;
-        list-style: none;
-        font-family: var(--mono);
-        font-size: 1rem;
-        color: var(--mist);
-        white-space: nowrap;
-      }
-      .strip li::after {
-        content: "";
-        display: inline-block;
-        width: 0.45rem;
-        height: 0.45rem;
-        margin-left: 2.5rem;
-        border-radius: 50%;
-        background: var(--burgundy);
-        vertical-align: middle;
-      }
-      @keyframes scroll {
-        to {
-          transform: translateX(-50%);
-        }
-      }
+  /* About */
+  .about { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
+  .about p { margin: 0; max-width: 58ch; font-size: 1.15rem; line-height: 1.6; }
+  .about p + p { margin-top: 1rem; color: var(--ink-soft); font-size: 1.05rem; }
+  .skills { list-style: none; margin: 0; padding: 0; }
+  .skills li { display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: baseline; padding-block: .85rem; border-top: 1px solid var(--rule); font-weight: 600; font-size: 1.1rem; }
+  .skills li:last-child { border-bottom: 1px solid var(--rule); }
+  .skills span { font-family: var(--mono); font-weight: 400; font-size: .78rem; color: var(--ink-soft); text-align: right; }
 
-      /* Sections */
-      section {
-        padding-top: clamp(5rem, 10vw, 8rem);
-      }
-      .section-head {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        gap: 1rem;
-        margin-bottom: 2rem;
-      }
-      h2 {
-        margin: 0;
-        font-size: clamp(2.25rem, 5vw, 4rem);
-        font-weight: 500;
-        letter-spacing: -0.045em;
-        line-height: 1;
-      }
+  /* Contact */
+  .contact h2 { font-size: clamp(2.4rem, 6.5vw, 5rem); max-width: 14ch; }
+  .contact .big { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-top: 2rem; font-size: clamp(1.25rem, 3vw, 1.9rem); font-weight: 600; letter-spacing: -0.02em; overflow-wrap: anywhere; }
+  .contact .big a { text-decoration-color: var(--accent); text-decoration-thickness: 2px; }
+  .contact .links { margin-top: 1.75rem; }
+  footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding-block: 1.5rem 2.5rem; border-top: 1px solid var(--rule); }
 
-      /* Work list */
-      .work {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        border-top: 1px solid var(--slate);
-      }
-      .work li {
-        border-bottom: 1px solid var(--slate);
-      }
-      .work a {
-        display: grid;
-        grid-template-columns: 3.5rem 1fr auto;
-        gap: 1.5rem;
-        align-items: start;
-        padding: 2rem 1rem;
-        text-decoration: none;
-        transition: background-color 0.25s ease;
-      }
-      .work a:hover,
-      .work a:focus-visible {
-        background: var(--navy);
-        outline: none;
-      }
-      .work .num {
-        padding-top: 0.6rem;
-      }
-      .work h3 {
-        margin: 0 0 0.5rem;
-        font-size: clamp(1.5rem, 3vw, 2.25rem);
-        font-weight: 500;
-        letter-spacing: -0.035em;
-        line-height: 1.1;
-      }
-      .work p {
-        margin: 0 0 0.75rem;
-        max-width: 60ch;
-        font-size: 1.05rem;
-        color: var(--mist);
-      }
-      .arrow {
-        width: 2.75rem;
-        height: 2.75rem;
-        display: grid;
-        place-items: center;
-        border: 1px solid var(--slate);
-        border-radius: 50%;
-        font-size: 1.1rem;
-        transition:
-          transform 0.25s ease,
-          background-color 0.25s ease,
-          border-color 0.25s ease;
-      }
-      .live {
-        display: inline-block;
-        margin-left: 0.6rem;
-        padding: 0.2rem 0.65rem;
-        border-radius: 999px;
-        background: var(--burgundy);
-        font-family: var(--mono);
-        font-size: 0.75rem;
-        letter-spacing: 0.04em;
-        vertical-align: middle;
-      }
-      .work a:hover .arrow,
-      .work a:focus-visible .arrow {
-        transform: rotate(45deg);
-        background: var(--burgundy);
-        border-color: var(--burgundy);
-      }
+  /* Scroll reveal for section headings (one time). Only headings below the first screen are hidden, by script. */
+  .reveal-pending { opacity: 0; transform: translateY(18px); }
+  .reveal-in { opacity: 1; transform: none; transition: opacity .7s ease, transform .7s ease; }
 
-      /* What I do */
-      .services {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 1px;
-        background: var(--slate);
-        border: 1px solid var(--slate);
-      }
-      .service {
-        background: var(--black);
-        padding: 2rem 1.75rem 2.5rem;
-      }
-      .service h3 {
-        margin: 3rem 0 0.5rem;
-        font-size: 1.5rem;
-        font-weight: 500;
-        letter-spacing: -0.03em;
-      }
-      .service p {
-        margin: 0;
-        color: var(--mist);
-      }
+  @media (max-width: 860px) {
+    .card.feature, .about { grid-template-columns: 1fr; }
+    .projects { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    :root { --rail: 0px; }
+    .rail { display: none; }
+    .main { padding-left: 0; }
+    .bar nav { display: none; }
+    .facts div { grid-template-columns: 1fr; gap: .25rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .card, .reveal-in { transition: none; }
+    .card:hover, .card:focus-within { transform: none; }
+  }
+</style>
+</head>
+<body>
 
-      /* Contact */
-      .contact {
-        padding-bottom: clamp(4rem, 8vw, 6rem);
-      }
-      .contact h2 {
-        font-size: clamp(2.75rem, 8vw, 7rem);
-        max-width: 12ch;
-      }
-      .email {
-        display: inline-block;
-        margin-top: 2.5rem;
-        font-size: clamp(1.25rem, 3vw, 2rem);
-        letter-spacing: -0.02em;
-        text-decoration: none;
-        background: linear-gradient(var(--burgundy), var(--burgundy)) 0 100% /
-          0 3px no-repeat;
-        transition: background-size 0.35s ease;
-        padding-bottom: 0.25rem;
-      }
-      .email:hover,
-      .email:focus-visible {
-        background-size: 100% 3px;
-      }
-      .profiles {
-        display: flex;
-        gap: 1.5rem;
-        margin-top: 2rem;
-      }
-      .profiles a {
-        text-underline-offset: 0.25em;
-        text-decoration-color: var(--slate);
-      }
-      .profiles a:hover {
-        text-decoration-color: var(--white);
-      }
+<div class="page">
+  <div class="bar">
+    <span class="label">Pooja Patel · Software Developer</span>
+    <nav aria-label="Sections" class="label">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme" id="theme-toggle" type="button" aria-label="Switch between light and dark theme">Theme</button>
+  </div>
 
-      footer {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 1rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid var(--slate);
-      }
-
-      /* Floating nav */
-      .dock {
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 1.5rem;
-        z-index: 10;
-        display: flex;
-        justify-content: center;
-        pointer-events: none;
-      }
-      .dock nav {
-        display: flex;
-        align-items: center;
-        gap: 0.25rem;
-        padding: 0.35rem;
-        background: var(--navy);
-        border: 1px solid var(--slate);
-        border-radius: 999px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-        pointer-events: auto;
-      }
-      .dock a {
-        padding: 0.65rem 1.1rem;
-        border-radius: 999px;
-        font-size: 0.95rem;
-        text-decoration: none;
-        color: var(--mist);
-        transition:
-          color 0.2s ease,
-          background-color 0.2s ease;
-      }
-      .dock a:hover {
-        color: var(--white);
-      }
-      .dock .cta {
-        background: var(--burgundy);
-        color: var(--white);
-        font-weight: 500;
-      }
-      .dock .cta:hover {
-        background: #95001d;
-      }
-
-      /* Fade in on scroll */
-      .reveal {
-        opacity: 0;
-        transform: translateY(24px);
-        transition:
-          opacity 0.7s ease,
-          transform 0.7s ease;
-      }
-      .reveal.visible {
-        opacity: 1;
-        transform: none;
-      }
-
-      @media (max-width: 640px) {
-        .work a {
-          grid-template-columns: 1fr auto;
-          padding: 1.75rem 0.5rem;
-        }
-        .work .num {
-          display: none;
-        }
-        .status {
-          display: none;
-        }
-        .dock a {
-          padding: 0.6rem 0.8rem;
-          font-size: 0.9rem;
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-        .strip-track {
-          animation: none;
-        }
-        .reveal {
-          opacity: 1;
-          transform: none;
-          transition: none;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <header class="wrap topbar">
-      <a class="wordmark" href="#top" id="top">pooja<span>.</span></a>
-      <span class="label status">Software Developer</span>
-    </header>
-
-    <main>
-      <div class="wrap hero">
-        <h1 class="reveal">
-          I build back-end services with Node.js
-          <em>and interactive apps for the browser.</em>
-        </h1>
-        <p class="label reveal">Pooja — Software Developer</p>
-      </div>
-
-      <div class="strip" aria-label="Technologies I use">
-        <div class="strip-track">
-          <ul>
-            <li>JavaScript</li>
-            <li>Node.js</li>
-            <li>Express</li>
-            <li>SQLite</li>
-            <li>MongoDB</li>
-            <li>Mongoose</li>
-            <li>REST APIs</li>
-            <li>JWT</li>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>Bootstrap</li>
-            <li>Handlebars</li>
-            <li>Git</li>
-          </ul>
-          <ul aria-hidden="true">
-            <li>JavaScript</li>
-            <li>Node.js</li>
-            <li>Express</li>
-            <li>SQLite</li>
-            <li>MongoDB</li>
-            <li>Mongoose</li>
-            <li>REST APIs</li>
-            <li>JWT</li>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>Bootstrap</li>
-            <li>Handlebars</li>
-            <li>Git</li>
-          </ul>
-        </div>
-      </div>
-
-      <section id="work" class="wrap">
-        <div class="section-head reveal">
-          <h2>Selected work</h2>
-          <span class="label">(02)</span>
-        </div>
-        <ul class="work">
-          <li class="reveal">
-            <a href="https://order-management-system-ysbl.onrender.com" target="_blank" rel="noopener">
-              <span class="label num">01</span>
-              <div>
-                <h3>Order Management System <span class="live">Try it live</span></h3>
-                <p>
-                  Four HTTP services that place, track and settle trades against
-                  a simulated exchange. Every handler gives the right result even
-                  when messages arrive twice or out of order. Cash and shares are
-                  reserved when an order is placed and settled on each fill.
-                </p>
-                <span class="label">Node.js · Express 5 · SQLite · First load can take up to a minute while the free server wakes up</span>
-              </div>
-              <span class="arrow" aria-hidden="true">↗</span>
-            </a>
-          </li>
-          <li class="reveal">
-            <a href="https://pooja9810.github.io/race-to-home/race-to-home.html" target="_blank" rel="noopener">
-              <span class="label num">02</span>
-              <div>
-                <h3>Race to Home <span class="live">Play it live</span></h3>
-                <p>
-                  A doodle-style board game for 2–4 players, based on the Indian
-                  race game Chowka Bhara / Ashta Chamma, with a demo mode where
-                  four computer players race each other.
-                </p>
-                <span class="label">JavaScript modules · HTML · CSS</span>
-              </div>
-              <span class="arrow" aria-hidden="true">↗</span>
-            </a>
-          </li>
-        </ul>
-      </section>
-
-      <section id="skills" class="wrap">
-        <div class="section-head reveal">
-          <h2>What I do</h2>
-        </div>
-        <div class="services reveal">
-          <div class="service">
-            <span class="label">(01)</span>
-            <h3>Back-end services</h3>
-            <p>REST APIs in Express, services that talk over HTTP, and token-based auth.</p>
-          </div>
-          <div class="service">
-            <span class="label">(02)</span>
-            <h3>Data &amp; databases</h3>
-            <p>SQLite and MongoDB schemas, transactions, and money kept in whole cents.</p>
-          </div>
-          <div class="service">
-            <span class="label">(03)</span>
-            <h3>Browser apps</h3>
-            <p>Interactive pages in plain JavaScript, HTML and CSS, from dashboards to games.</p>
-          </div>
-          <div class="service">
-            <span class="label">(04)</span>
-            <h3>Reliable logic</h3>
-            <p>Event replays and message handlers that survive duplicates, checked with acceptance tests.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="wrap contact">
-        <p class="label reveal">Get in touch</p>
-        <h2 class="reveal">Let's build something together.</h2>
-        <a class="email reveal" href="mailto:pooja.patel9193@gmail.com">pooja.patel9193@gmail.com</a>
-        <div class="profiles label reveal">
-          <a href="https://github.com/Pooja9810">GitHub</a>
-          <a href="https://www.linkedin.com/in/pooja-j-patel/">LinkedIn</a>
-        </div>
-      </section>
-    </main>
-
-    <footer class="wrap label">
-      <span>© 2026 Pooja</span>
-      <a href="#top">Back to top ↑</a>
-    </footer>
-
-    <div class="dock">
-      <nav aria-label="Main">
-        <a href="#work">Work</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-        <a class="cta" href="mailto:pooja.patel9193@gmail.com">Email me</a>
-      </nav>
+  <header class="row">
+    <div class="rail" aria-hidden="true"></div>
+    <div class="main">
+      <h1>Pooja Patel</h1>
+      <p class="position">Software developer specializing in <strong>Node.js back-end systems</strong>. I build APIs and data layers that stay correct under real-world conditions, and the interfaces that sit on top of them.</p>
+      <ul class="links">
+        <li><a href="mailto:pooja.patel9193@gmail.com">pooja.patel9193@gmail.com</a><button class="copy" type="button" data-copy="pooja.patel9193@gmail.com">Copy</button></li>
+        <li><a href="https://www.linkedin.com/in/pooja-j-patel/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+        <li><a href="https://github.com/Pooja9810" target="_blank" rel="noopener">GitHub ↗</a></li>
+      </ul>
     </div>
+  </header>
 
-    <script>
-      const items = document.querySelectorAll(".reveal");
-      const observer = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-              observer.unobserve(entry.target);
-            }
-          }
-        },
-        { threshold: 0.15 },
-      );
-      items.forEach((item) => observer.observe(item));
-    </script>
-  </body>
+  <section class="row" id="work" aria-labelledby="work-title">
+    <div class="rail" aria-hidden="true"><span class="num">01</span></div>
+    <div class="main">
+      <div class="section-head">
+        <h2 id="work-title" class="reveal">Selected projects</h2>
+        <span class="label">3 projects</span>
+      </div>
+
+      <div class="projects">
+        <article class="card feature">
+          <div class="intro">
+            <span class="label">Back end · Microservices</span>
+            <h3>Order Management System</h3>
+            <p class="problem">A trading platform must stay accurate even when exchange messages are duplicated or delivered out of order.</p>
+            <p class="stack">Node.js · Express 5 · SQLite</p>
+            <div class="actions">
+            <a href="https://order-management-system-ysbl.onrender.com" target="_blank" rel="noopener">Try it live ↗</a>
+            <a href="https://github.com/Pooja9810/-order-management-system-assignment" target="_blank" rel="noopener">Code ↗</a>
+          </div>
+            <p class="stack">First load can take up to a minute while the free server wakes up.</p>
+          </div>
+          <dl class="facts">
+            <div><dt class="label">Role</dt><dd>Designed and implemented the order and ledger services, two of the system's four microservices.</dd></div>
+            <div><dt class="label">Outcome</dt><dd>A REST order API enforcing <strong>16 validation rules</strong>, idempotent handling of fills and cancellations from a message queue, and funds and shares reserved at placement and settled on each fill. Includes CSV reporting and a web dashboard.</dd></div>
+          </dl>
+        </article>
+
+        <article class="card feature">
+          <div class="intro">
+            <span class="label">Full stack · Applied AI</span>
+            <h3>Ledgerly</h3>
+            <p class="problem">Personal finance tools depend on tedious manual entry, and AI assistants can't be trusted to handle financial figures on their own.</p>
+            <p class="stack">React · Express 5 · SQLite · DeepSeek API</p>
+            <div class="actions">
+              <span class="muted">Repository is private</span>
+            </div>
+          </div>
+          <dl class="facts">
+            <div><dt class="label">Role</dt><dd>Designed and built the full application: React client, Express REST API, SQLite schema with versioned migrations, and the AI integration layer.</dd></div>
+            <div><dt class="label">Outcome</dt><dd>Transactions entered by text, voice or receipt photo; bank CSV import with automatic categorization; and a tool-using agent that answers questions from live data. <strong>Every AI output is validated by code, and every figure is computed deterministically.</strong> Covered by 635 automated tests.</dd></div>
+          </dl>
+        </article>
+
+        <article class="card feature">
+          <div class="intro">
+            <span class="label">Front end · Game development</span>
+            <h3>Race to Home</h3>
+            <p class="problem">Adapting the traditional Indian board game Chowka Bhara / Ashta Chamma for the browser, with no installation required.</p>
+            <p class="stack">JavaScript modules · HTML · CSS</p>
+            <div class="actions">
+            <a href="https://pooja9810.github.io/race-to-home/race-to-home.html" target="_blank" rel="noopener">Play it live ↗</a>
+            <a href="https://github.com/Pooja9810/race-to-home" target="_blank" rel="noopener">Code ↗</a>
+          </div>
+          </div>
+          <dl class="facts">
+            <div><dt class="label">Role</dt><dd>Designed and built the complete game in modular vanilla JavaScript: rules engine, turn management, board rendering and visual effects.</dd></div>
+            <div><dt class="label">Outcome</dt><dd>Fully playable online for <strong>2–4 players</strong>, with an automated demo mode in which four computer players compete.</dd></div>
+          </dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="row" id="about" aria-labelledby="about-title">
+    <div class="rail" aria-hidden="true"><span class="num">02</span></div>
+    <div class="main">
+      <div class="section-head"><h2 id="about-title" class="reveal">About</h2></div>
+      <div class="about">
+        <div>
+          <p>I'm a software developer who cares most about correctness. I focus on the details that make a system trustworthy: monetary values stored as integer cents, balances derived from transaction history, and message handlers that are idempotent by design.</p>
+          <p>I work primarily with Node.js, Express and SQLite, build front ends in React and vanilla JavaScript, and rely on automated tests to verify behavior rather than assume it.</p>
+        </div>
+        <ul class="skills" aria-label="Skills and tools">
+          <li>Node.js &amp; Express <span>REST APIs, microservices</span></li>
+          <li>SQL &amp; SQLite <span>schema design, migrations</span></li>
+          <li>React <span>component-based UIs</span></li>
+          <li>JavaScript <span>ES modules, browser apps</span></li>
+          <li>Automated testing <span>Vitest, Supertest, node:test</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="row contact" id="contact" aria-labelledby="contact-title">
+    <div class="rail" aria-hidden="true"><span class="num">03</span></div>
+    <div class="main">
+      <p class="label" style="margin:0 0 1rem">Contact</p>
+      <h2 id="contact-title" class="reveal">Let's build something reliable together.</h2>
+      <div class="big">
+        <a href="mailto:pooja.patel9193@gmail.com">pooja.patel9193@gmail.com</a>
+        <button class="copy" type="button" data-copy="pooja.patel9193@gmail.com">Copy</button>
+      </div>
+      <ul class="links">
+        <li><a href="https://www.linkedin.com/in/pooja-j-patel/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+        <li><a href="https://github.com/Pooja9810" target="_blank" rel="noopener">GitHub ↗</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="label">
+    <span>© 2026 Pooja Patel</span>
+    <a href="#">Back to top ↑</a>
+  </footer>
+</div>
+
+<script>
+  // Theme toggle (remembered per browser when storage is available)
+  (function () {
+    const root = document.documentElement;
+    try { const t = localStorage.getItem("pp-theme"); if (t) root.dataset.theme = t; } catch (e) {}
+    document.getElementById("theme-toggle").addEventListener("click", function () {
+      const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+      root.dataset.theme = dark ? "light" : "dark";
+      try { localStorage.setItem("pp-theme", root.dataset.theme); } catch (e) {}
+    });
+  })();
+
+  // Copy email buttons
+  document.querySelectorAll(".copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      const text = btn.dataset.copy;
+      const done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy"; }, 1600); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function () { selectText(btn.previousElementSibling); });
+      } else { selectText(btn.previousElementSibling); }
+    });
+  });
+  function selectText(el) {
+    const r = document.createRange(); r.selectNodeContents(el);
+    const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+
+  // One-time fade/slide-up for section headings below the first screen
+  (function () {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
+    const io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("reveal-in"); e.target.classList.remove("reveal-pending"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll(".reveal").forEach(function (el) {
+      if (el.getBoundingClientRect().top > innerHeight) { el.classList.add("reveal-pending"); io.observe(el); }
+    });
+  })();
+</script>
+</body>
 </html>
