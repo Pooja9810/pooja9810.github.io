@@ -152,6 +152,7 @@
   }
   @media (max-width: 640px) {
     :root { --rail: 0px; }
+    .row { grid-template-columns: 1fr; } /* the rail is hidden, so give its column back */
     .rail { display: none; }
     .main { padding-left: 0; }
     .bar nav { display: none; }
@@ -224,12 +225,14 @@
             <p class="problem">Personal finance tools depend on tedious manual entry, and AI assistants can't be trusted to handle financial figures on their own.</p>
             <p class="stack">React · Express 5 · SQLite · DeepSeek API</p>
             <div class="actions">
-              <span class="muted">Repository is private</span>
-            </div>
+            <a href="https://ledgerly-demo-gca0.onrender.com" target="_blank" rel="noopener">Try it live ↗</a>
+            <a href="https://github.com/Pooja9810/ai-ledger" target="_blank" rel="noopener">Code ↗</a>
+          </div>
+            <p class="stack">Demo uses made-up data that resets every hour. First load can take up to a minute while the free server wakes up.</p>
           </div>
           <dl class="facts">
             <div><dt class="label">Role</dt><dd>Designed and built the full application: React client, Express REST API, SQLite schema with versioned migrations, and the AI integration layer.</dd></div>
-            <div><dt class="label">Outcome</dt><dd>Transactions entered by text, voice or receipt photo; bank CSV import with automatic categorization; and a tool-using agent that answers questions from live data. <strong>Every AI output is validated by code, and every figure is computed deterministically.</strong> Covered by 635 automated tests.</dd></div>
+            <div><dt class="label">Outcome</dt><dd>Transactions entered by text, voice or receipt photo; bank CSV import with automatic categorization; and a tool-using agent that answers questions from live data. <strong>Every AI output is validated by code, and every figure is computed deterministically.</strong> Covered by 698 automated tests.</dd></div>
           </dl>
         </article>
 
