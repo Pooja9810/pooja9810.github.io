@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Pooja Patel · Software Developer</title>
-<meta name="description" content="Pooja Patel is a software developer specializing in Node.js back-end systems: APIs and data layers that stay correct under real-world conditions.">
+<meta name="description" content="Pooja Patel is a full-stack JavaScript developer in Toronto building Node.js APIs, React interfaces and AI features checked by code.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -125,6 +125,19 @@
   .actions { margin-top: auto; display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; align-items: center; font-weight: 600; }
   .actions a { text-decoration-color: var(--accent); }
   .actions .muted { font-weight: 400; color: var(--ink-soft); font-size: .9rem; }
+  [hidden] { display: none !important; }
+  .open {
+    margin: 0; display: inline-flex; align-items: center; gap: .6rem; width: fit-content; max-width: 100%;
+    padding: .4rem .9rem; border: 1px solid var(--rule); border-radius: 999px;
+    font-family: var(--mono); font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .open::before { content: ""; flex: none; width: .5rem; height: .5rem; border-radius: 50%; background: #22a55a; box-shadow: 0 0 0 3px rgba(34,165,90,.18); }
+  .side { display: grid; gap: 1rem; align-content: start; padding-top: 1rem; border-top: 1px solid var(--rule); min-width: 0; }
+  .mypart { margin: 0; display: grid; gap: .2rem; font-weight: 600; font-size: .98rem; }
+  .pts { margin: 0; padding-left: 1.1em; display: grid; gap: .5rem; color: var(--ink-soft); font-size: .98rem; }
+  .pts strong { color: var(--ink); font-weight: 600; }
+  .pts li::marker { color: var(--accent); }
+
 
   /* About */
   .about { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
@@ -182,11 +195,13 @@
     <div class="rail" aria-hidden="true"></div>
     <div class="main">
       <h1>Pooja Patel</h1>
-      <p class="position">Software developer specializing in <strong>Node.js back-end systems</strong>. I build APIs and data layers that stay correct under real-world conditions, and the interfaces that sit on top of them.</p>
+      <p class="open">Open to software developer roles · Toronto, Canada · Remote or hybrid</p>
+      <p class="position"><strong>Full-stack JavaScript developer.</strong> I build Node.js APIs that stay correct under real-world conditions, the React interfaces on top, and AI features checked by code.</p>
       <ul class="links">
         <li><a href="mailto:pooja.patel9193@gmail.com">pooja.patel9193@gmail.com</a><button class="copy" type="button" data-copy="pooja.patel9193@gmail.com">Copy</button></li>
         <li><a href="https://www.linkedin.com/in/pooja-j-patel/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
         <li><a href="https://github.com/Pooja9810" target="_blank" rel="noopener">GitHub ↗</a></li>
+        <li><a href="Pooja-Patel-Resume.pdf" target="_blank" rel="noopener">Résumé (PDF) ↗</a></li>
       </ul>
     </div>
   </header>
@@ -204,55 +219,66 @@
           <div class="intro">
             <span class="label">Back end · Microservices</span>
             <h3>Order Management System</h3>
-            <p class="problem">A trading platform must stay accurate even when exchange messages are duplicated or delivered out of order.</p>
+            <p class="problem">A stock trading back end that keeps orders and balances accurate, even when exchange messages arrive twice or out of order.</p>
             <p class="stack">Node.js · Express 5 · SQLite</p>
             <div class="actions">
-            <a href="https://order-management-system-ysbl.onrender.com" target="_blank" rel="noopener">Try it live ↗</a>
-            <a href="https://github.com/Pooja9810/-order-management-system-assignment" target="_blank" rel="noopener">Code ↗</a>
+              <a href="https://order-management-system-ysbl.onrender.com" target="_blank" rel="noopener">Try it live ↗</a>
+              <a href="https://github.com/Pooja9810/-order-management-system-assignment" target="_blank" rel="noopener">Code ↗</a>
+            </div>
           </div>
-            <p class="stack">First load can take up to a minute while the free server wakes up.</p>
+          <div class="side">
+            <ul class="pts">
+              <li>REST API that checks every order against <strong>16 validation rules</strong></li>
+              <li><strong>Idempotent</strong> message handling: the same trade is never processed twice</li>
+              <li>Reserves funds when an order is placed and settles them per trade, so balances never drift</li>
+              <li>CSV reports and a web dashboard</li>
+            </ul>
           </div>
-          <dl class="facts">
-            <div><dt class="label">Role</dt><dd>Designed and implemented the order and ledger services, two of the system's four microservices.</dd></div>
-            <div><dt class="label">Outcome</dt><dd>A REST order API enforcing <strong>16 validation rules</strong>, idempotent handling of fills and cancellations from a message queue, and funds and shares reserved at placement and settled on each fill. Includes CSV reporting and a web dashboard.</dd></div>
-          </dl>
         </article>
 
         <article class="card feature">
           <div class="intro">
             <span class="label">Full stack · Applied AI</span>
             <h3>Ledgerly</h3>
-            <p class="problem">Personal finance tools depend on tedious manual entry, and AI assistants can't be trusted to handle financial figures on their own.</p>
+            <p class="problem">A personal finance tracker with AI-powered entry by text, voice or receipt photo, and every number checked by code.</p>
             <p class="stack">React · Express 5 · SQLite · DeepSeek API</p>
             <div class="actions">
-            <a href="https://ledgerly-demo-gca0.onrender.com" target="_blank" rel="noopener">Try it live ↗</a>
-            <a href="https://github.com/Pooja9810/ai-ledger" target="_blank" rel="noopener">Code ↗</a>
+              <a href="https://ledgerly-demo-gca0.onrender.com" target="_blank" rel="noopener">Try it live ↗</a>
+              <a href="https://github.com/Pooja9810/ai-ledger" target="_blank" rel="noopener">Code ↗</a>
+              <span class="muted">Sample data, resets hourly</span>
+            </div>
           </div>
-            <p class="stack">Demo uses made-up data that resets every hour. First load can take up to a minute while the free server wakes up.</p>
+          <div class="side">
+            <ul class="pts">
+              <li>AI turns text, voice and receipt photos into transactions</li>
+              <li>Bank CSV imports, <strong>auto-categorized by an LLM</strong></li>
+              <li><strong>Tool-using AI agent</strong> that answers questions from live data</li>
+              <li><strong>Every AI output validated by code</strong>, and every figure computed deterministically</li>
+            </ul>
           </div>
-          <dl class="facts">
-            <div><dt class="label">Role</dt><dd>Designed and built the full application: React client, Express REST API, SQLite schema with versioned migrations, and the AI integration layer.</dd></div>
-            <div><dt class="label">Outcome</dt><dd>Transactions entered by text, voice or receipt photo; bank CSV import with automatic categorization; and a tool-using agent that answers questions from live data. <strong>Every AI output is validated by code, and every figure is computed deterministically.</strong> Covered by 763 automated tests.</dd></div>
-          </dl>
         </article>
 
         <article class="card feature">
           <div class="intro">
             <span class="label">Front end · Game development</span>
             <h3>Race to Home</h3>
-            <p class="problem">Adapting the traditional Indian board game Chowka Bhara / Ashta Chamma for the browser, with no installation required.</p>
+            <p class="problem">The Indian board game Chowka Bhara / Ashta Chamma, playable in your browser.</p>
             <p class="stack">JavaScript modules · HTML · CSS</p>
             <div class="actions">
-            <a href="https://pooja9810.github.io/race-to-home/race-to-home.html" target="_blank" rel="noopener">Play it live ↗</a>
-            <a href="https://github.com/Pooja9810/race-to-home" target="_blank" rel="noopener">Code ↗</a>
+              <a href="https://pooja9810.github.io/race-to-home/race-to-home.html" target="_blank" rel="noopener">Play it live ↗</a>
+              <a href="https://github.com/Pooja9810/race-to-home" target="_blank" rel="noopener">Code ↗</a>
+            </div>
           </div>
+          <div class="side">
+            <ul class="pts">
+              <li>Playable online for <strong>2–4 players</strong></li>
+              <li>Rules engine in modular vanilla JavaScript, plus a computer-vs-computer demo mode</li>
+            </ul>
           </div>
-          <dl class="facts">
-            <div><dt class="label">Role</dt><dd>Designed and built the complete game in modular vanilla JavaScript: rules engine, turn management, board rendering and visual effects.</dd></div>
-            <div><dt class="label">Outcome</dt><dd>Fully playable online for <strong>2–4 players</strong>, with an automated demo mode in which four computer players compete.</dd></div>
-          </dl>
         </article>
+        <p class="stack">Live demos run on a free server, so the first load can take up to a minute.</p>
       </div>
+
     </div>
   </section>
 
@@ -262,14 +288,14 @@
       <div class="section-head"><h2 id="about-title" class="reveal">About</h2></div>
       <div class="about">
         <div>
-          <p>I'm a software developer who cares most about correctness. I focus on the details that make a system trustworthy: monetary values stored as integer cents, balances derived from transaction history, and message handlers that are idempotent by design.</p>
-          <p>I work primarily with Node.js, Express and SQLite, build front ends in React and vanilla JavaScript, and rely on automated tests to verify behavior rather than assume it.</p>
+          <p>I started in enterprise automation at TCS, interned as a developer at Celerity One, and spent three years running operations for a growing restaurant chain. Now I build full-stack apps that stay correct when it counts, using AI tools to move fast and tests to keep the work honest.</p>
         </div>
         <ul class="skills" aria-label="Skills and tools">
           <li>Node.js &amp; Express <span>REST APIs, microservices</span></li>
-          <li>SQL &amp; SQLite <span>schema design, migrations</span></li>
+          <li>SQL <span>PostgreSQL, SQLite, migrations</span></li>
           <li>React <span>component-based UIs</span></li>
-          <li>JavaScript <span>ES modules, browser apps</span></li>
+          <li>JavaScript &amp; TypeScript <span>ES modules, browser apps</span></li>
+          <li>AI &amp; LLMs <span>LLM APIs, tool-using agents, Claude Code</span></li>
           <li>Automated testing <span>Vitest, Supertest, node:test</span></li>
         </ul>
       </div>
@@ -288,6 +314,7 @@
       <ul class="links">
         <li><a href="https://www.linkedin.com/in/pooja-j-patel/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
         <li><a href="https://github.com/Pooja9810" target="_blank" rel="noopener">GitHub ↗</a></li>
+        <li><a href="Pooja-Patel-Resume.pdf" target="_blank" rel="noopener">Résumé (PDF) ↗</a></li>
       </ul>
     </div>
   </section>
